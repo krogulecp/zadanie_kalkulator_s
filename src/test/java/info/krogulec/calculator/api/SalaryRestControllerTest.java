@@ -71,7 +71,7 @@ class SalaryRestControllerTest {
         //when and then
         mockMvc.perform(requestBuilder)
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
     }
 
 }
