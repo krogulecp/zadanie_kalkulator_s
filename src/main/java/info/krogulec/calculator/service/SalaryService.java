@@ -26,6 +26,6 @@ public class SalaryService {
                 .filter(salaryStrategy -> country.equals(salaryStrategy.getCountry()))
                 .map(salaryStrategy -> salaryStrategy.calculateSalary(dailyRate))
                 .findFirst()
-                .orElseThrow(CountryNotFoundException::new);
+                .orElseThrow(() -> new CountryNotFoundException(String.format("Country %s not found", country.name())));
     }
 }

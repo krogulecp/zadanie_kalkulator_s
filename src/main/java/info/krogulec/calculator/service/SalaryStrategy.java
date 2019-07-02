@@ -11,11 +11,6 @@ import java.time.Period;
  */
 public interface SalaryStrategy {
 
-    /**
-     * Number of working days in month
-     */
-    static final Period WORKING_DAYS_COUNT = Period.ofDays(22);
-
     Salary calculateSalary(BigDecimal dailyRate);
 
     Country getCountry();

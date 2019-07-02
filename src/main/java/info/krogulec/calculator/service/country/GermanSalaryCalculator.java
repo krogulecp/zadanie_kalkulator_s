@@ -1,5 +1,6 @@
 package info.krogulec.calculator.service.country;
 
+import info.krogulec.calculator.SalaryCalculatorConfigurationProperties;
 import info.krogulec.calculator.enums.Country;
 import info.krogulec.calculator.model.Salary;
 import info.krogulec.calculator.repository.ExchangeRateRepository;
@@ -15,17 +16,23 @@ import java.math.BigDecimal;
 @Component
 public class GermanSalaryCalculator extends SalaryBase implements SalaryStrategy {
 
-    public GermanSalaryCalculator(ExchangeRateRepository exchangeRateRepository) {
-        super(exchangeRateRepository);
+    public GermanSalaryCalculator(ExchangeRateRepository exchangeRateRepository, SalaryCalculatorConfigurationProperties props) {
+        super(exchangeRateRepository, Country.GERMANY, props);
     }
 
     @Override
     public Salary calculateSalary(BigDecimal dailyRate) {
-        return null;
+        BigDecimal monthlyGross = dailyRate.multiply(new BigDecimal(WORKING_DAYS_COUNT.getDays()));
+        double taxMultiplier = 1 - (props.getPoland().getTaxPercentage()/100);
+
+
+        BigDecimal monthlySalary = (monthlyGross.multiply(new BigDecimal(taxMultiplier))).subtract(props.getGermany().getFixedCostsEuro());
+
+        return new Salary(monthlySalary, country);
     }
 
     @Override
     public Country getCountry() {
-        return null;
+        return country;
     }
 }
