@@ -2,10 +2,11 @@ package info.krogulec.calculator.service.country;
 
 import info.krogulec.calculator.SalaryCalculatorConfigurationProperties;
 import info.krogulec.calculator.enums.Country;
-import info.krogulec.calculator.model.Salary;
+import info.krogulec.calculator.model.SalaryPln;
 import info.krogulec.calculator.repository.ExchangeRateRepository;
 import info.krogulec.calculator.service.SalaryBase;
 import info.krogulec.calculator.service.SalaryStrategy;
+import info.krogulec.calculator.service.ToPlnConverter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -16,19 +17,19 @@ import java.math.BigDecimal;
 @Component
 public class GermanSalaryCalculator extends SalaryBase implements SalaryStrategy {
 
-    public GermanSalaryCalculator(ExchangeRateRepository exchangeRateRepository, SalaryCalculatorConfigurationProperties props) {
-        super(exchangeRateRepository, Country.GERMANY, props);
+    public GermanSalaryCalculator(SalaryCalculatorConfigurationProperties props, ToPlnConverter toPlnConverter) {
+        super(Country.GERMANY, props, toPlnConverter);
     }
 
     @Override
-    public Salary calculateSalary(BigDecimal dailyRate) {
+    public SalaryPln calculateSalary(BigDecimal dailyRate) {
         BigDecimal monthlyGross = dailyRate.multiply(new BigDecimal(WORKING_DAYS_COUNT.getDays()));
         double taxMultiplier = 1 - (props.getPoland().getTaxPercentage()/100);
 
 
         BigDecimal monthlySalary = (monthlyGross.multiply(new BigDecimal(taxMultiplier))).subtract(props.getGermany().getFixedCostsEuro());
 
-        return new Salary(monthlySalary, country);
+        return new SalaryPln(toPlnConverter.convert(monthlySalary, country));
     }
 
     @Override

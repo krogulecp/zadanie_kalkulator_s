@@ -1,6 +1,6 @@
 package info.krogulec.calculator.api;
 
-import info.krogulec.calculator.model.Salary;
+import info.krogulec.calculator.model.SalaryPln;
 import info.krogulec.calculator.service.SalaryService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class SalaryRestController {
     }
 
     @GetMapping(path = "/api/salary", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Salary> calculateSalary(SalaryRequest salaryRequest){
+    public ResponseEntity<SalaryPln> calculateSalary(SalaryRequest salaryRequest){
         return ResponseEntity
                 .ok(salaryService.calculateSalary(salaryRequest.getDailyRate(), salaryRequest.getCountry()));
     }

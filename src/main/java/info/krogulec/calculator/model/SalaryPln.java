@@ -8,24 +8,18 @@ import java.math.BigDecimal;
 /**
  * @author krogulecp
  */
-public final class Salary {
+public final class SalaryPln {
 
     private final BigDecimal amount;
-    private final Country country;
 
-    public Salary(BigDecimal amount, Country country) {
+    public SalaryPln(BigDecimal amount) {
         this.amount = amount;
-        this.country = country;
     }
 
     //region Getters
 
     public BigDecimal getAmount() {
         return amount.setScale(2, BigDecimal.ROUND_HALF_UP);
-    }
-
-    public Country getCountry() {
-        return country;
     }
 
     //endregion

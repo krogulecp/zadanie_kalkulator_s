@@ -2,11 +2,10 @@ package info.krogulec.calculator.service;
 
 import info.krogulec.calculator.CountryNotFoundException;
 import info.krogulec.calculator.enums.Country;
-import info.krogulec.calculator.model.Salary;
+import info.krogulec.calculator.model.SalaryPln;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -20,7 +19,7 @@ public class SalaryService {
         this.salaryStrategies = salaryStrategies;
     }
 
-    public Salary calculateSalary(BigDecimal dailyRate, Country country){
+    public SalaryPln calculateSalary(BigDecimal dailyRate, Country country){
         return salaryStrategies
                 .stream()
                 .filter(salaryStrategy -> country.equals(salaryStrategy.getCountry()))
