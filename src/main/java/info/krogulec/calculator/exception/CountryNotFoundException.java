@@ -1,4 +1,4 @@
-package info.krogulec.calculator;
+package info.krogulec.calculator.exception;
 
 /**
  * @author krogulecp
