@@ -14,25 +14,9 @@ import java.math.BigDecimal;
  * @author krogulecp
  */
 @Component
-public class GermanSalaryCalculator extends SalaryBase implements SalaryStrategy {
+public class GermanSalaryCalculator extends SalaryBase {
 
     public GermanSalaryCalculator(GermanyConfigurationProperties props, ToPlnConverter toPlnConverter) {
         super(Country.GERMANY, props, toPlnConverter);
-    }
-
-    @Override
-    public SalaryPln calculateSalary(BigDecimal dailyRate) {
-        BigDecimal monthlyGross = dailyRate.multiply(new BigDecimal(WORKING_DAYS_COUNT.getDays()));
-        double taxMultiplier = 1 - (props.getTaxPercentage()/100);
-
-
-        BigDecimal monthlySalary = (monthlyGross.multiply(new BigDecimal(taxMultiplier))).subtract(props.getFixedCosts());
-
-        return new SalaryPln(toPlnConverter.convert(monthlySalary, country));
-    }
-
-    @Override
-    public Country getCountry() {
-        return country;
     }
 }
