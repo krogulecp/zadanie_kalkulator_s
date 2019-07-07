@@ -39,7 +39,7 @@ class SalaryPlnRestControllerTest {
         final Country COUNTRY = Country.POLAND;
         final BigDecimal AMOUNT = new BigDecimal("9999.99");
 
-        final String URL = "/api/salary?dailyRate=100&country=" + COUNTRY;
+        final String URL = "/salary?dailyRate=100&country=" + COUNTRY;
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(URL).accept(MediaType.APPLICATION_JSON);
 
@@ -59,7 +59,7 @@ class SalaryPlnRestControllerTest {
         final Country COUNTRY = Country.POLAND;
         final BigDecimal AMOUNT = new BigDecimal("9999.99");
 
-        final String URL = "/api/salary?dailyRate=notValid&country=" + COUNTRY;
+        final String URL = "/salary?dailyRate=notValid&country=" + COUNTRY;
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(URL).accept(MediaType.APPLICATION_JSON);
 

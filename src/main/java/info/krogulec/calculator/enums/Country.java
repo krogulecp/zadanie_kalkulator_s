@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * @author krogulecp
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum Country {
     POLAND ("PL", "PLN"), GERMANY ("DE", "EUR"), UNITED_KINGDOM ("UK","GBP");
 
