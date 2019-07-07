@@ -1,9 +1,8 @@
 package info.krogulec.calculator.service.country;
 
-import info.krogulec.calculator.SalaryCalculatorConfigurationProperties;
 import info.krogulec.calculator.enums.Country;
 import info.krogulec.calculator.model.SalaryPln;
-import info.krogulec.calculator.repository.ExchangeRateRepository;
+import info.krogulec.calculator.properties.GermanyConfigurationProperties;
 import info.krogulec.calculator.service.SalaryBase;
 import info.krogulec.calculator.service.SalaryStrategy;
 import info.krogulec.calculator.service.ToPlnConverter;
@@ -17,17 +16,17 @@ import java.math.BigDecimal;
 @Component
 public class GermanSalaryCalculator extends SalaryBase implements SalaryStrategy {
 
-    public GermanSalaryCalculator(SalaryCalculatorConfigurationProperties props, ToPlnConverter toPlnConverter) {
+    public GermanSalaryCalculator(GermanyConfigurationProperties props, ToPlnConverter toPlnConverter) {
         super(Country.GERMANY, props, toPlnConverter);
     }
 
     @Override
     public SalaryPln calculateSalary(BigDecimal dailyRate) {
         BigDecimal monthlyGross = dailyRate.multiply(new BigDecimal(WORKING_DAYS_COUNT.getDays()));
-        double taxMultiplier = 1 - (props.getPoland().getTaxPercentage()/100);
+        double taxMultiplier = 1 - (props.getTaxPercentage()/100);
 
 
-        BigDecimal monthlySalary = (monthlyGross.multiply(new BigDecimal(taxMultiplier))).subtract(props.getGermany().getFixedCostsEuro());
+        BigDecimal monthlySalary = (monthlyGross.multiply(new BigDecimal(taxMultiplier))).subtract(props.getFixedCosts());
 
         return new SalaryPln(toPlnConverter.convert(monthlySalary, country));
     }

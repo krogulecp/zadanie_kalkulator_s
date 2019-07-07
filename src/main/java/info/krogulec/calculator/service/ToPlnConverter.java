@@ -17,8 +17,8 @@ public class ToPlnConverter {
         this.exchangeRateRepository = exchangeRateRepository;
     }
 
-    public BigDecimal convert(BigDecimal in, Country country){
-        return in.multiply(exchangeRateRepository.getRateForCurrencyCode(country.getCurrencyCode()));
+    public BigDecimal convert(BigDecimal in, Country country) {
+        return Country.POLAND.equals(country) ? in : in.multiply(exchangeRateRepository.getRateForCurrencyCode(country.getCurrencyCode()));
     }
 
 

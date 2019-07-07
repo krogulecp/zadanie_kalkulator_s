@@ -1,8 +1,5 @@
 package info.krogulec.calculator.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import info.krogulec.calculator.enums.Country;
-
 import java.math.BigDecimal;
 
 /**

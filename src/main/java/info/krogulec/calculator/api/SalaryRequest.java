@@ -8,6 +8,7 @@ import java.math.BigDecimal;
  * @author krogulecp
  */
 public class SalaryRequest {
+
     private BigDecimal dailyRate;
     private Country country;
 
@@ -18,7 +19,11 @@ public class SalaryRequest {
     }
 
     public void setDailyRate(BigDecimal dailyRate) {
-        this.dailyRate = dailyRate;
+        if (dailyRate.doubleValue() >= 0){
+            this.dailyRate = dailyRate;
+        }else {
+            throw new IllegalArgumentException("Daily rate not valid");
+        }
     }
 
     public Country getCountry() {

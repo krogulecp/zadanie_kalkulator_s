@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Country {
-    POLAND ("PL", "PLN"), GERMANY ("DE", "EURO"), UNITED_KINGDOM ("UK","GBP");
+    POLAND ("PL", "PLN"), GERMANY ("DE", "EUR"), UNITED_KINGDOM ("UK","GBP");
 
     private final String countryCode;
     private final String currencyCode;

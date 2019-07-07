@@ -1,7 +1,7 @@
 package info.krogulec.calculator.service;
 
-import info.krogulec.calculator.SalaryCalculatorConfigurationProperties;
 import info.krogulec.calculator.enums.Country;
+import info.krogulec.calculator.properties.SalaryCalculatorConfigurationProperties;
 
 import java.time.Period;
 

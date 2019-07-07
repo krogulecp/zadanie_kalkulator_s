@@ -1,7 +1,7 @@
 package info.krogulec.calculator.service;
 
-import info.krogulec.calculator.CountryNotFoundException;
 import info.krogulec.calculator.enums.Country;
+import info.krogulec.calculator.exception.CountryNotFoundException;
 import info.krogulec.calculator.model.SalaryPln;
 import org.springframework.stereotype.Service;
 
