@@ -2,9 +2,6 @@ package info.krogulec.calculator.api;
 
 import info.krogulec.calculator.model.SalaryPln;
 import info.krogulec.calculator.service.SalaryService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
